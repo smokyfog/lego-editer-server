@@ -42,7 +42,7 @@ router.get('/api/db-check', async ctx => {
     ctx.body = {
         errno: 0,
         data: {
-            a: 1,
+            a: 2,
             name: 'biz editor sever',
             version: packageInfo.version,
             ENV,
