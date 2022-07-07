@@ -27,18 +27,14 @@ jobs:
                   mkdir -p ~/.ssh/
                   echo "${{secrets.ALI}}" > ~/.ssh/id_rsa 
                   chmod 600 ~/.ssh/id_rsa
-                  ssh-keyscan 47.93.10.229 >> ~/.ssh/known_hosts
+                  ssh-keyscan "47.93.10.229" >> ~/.ssh/known_hosts
             - name: deploy # 部署
-              # 【注意】用 work 账号登录，手动创建 /home/work/imooc-lego 目录
-              # 然后 git clone https://username:password@github.com/imooc-lego/biz-editor-server.git -b master （私有仓库，使用 github 用户名和密码）
-              # 记得删除 origin ，否则会暴露 github 密码
-              # 启动 docker
-
               # 重新下载最新代码
               # 删除 origin ，否则会暴露 github 密码'
               # 和 docker-compose.yml service 名字一致
               run: |
-                  ssh yq@47.93.10.229;
+                  ssh yq@47.93.10.229 "
+                  
                     cd /home/yq/lego-editor/lego-editer-server;
                     git remote add origin https://github.com/smokyfog/lego-editer-server.git;
                     git checkout master;
