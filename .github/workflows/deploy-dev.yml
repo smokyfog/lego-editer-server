@@ -38,7 +38,7 @@ jobs:
               # 删除 origin ，否则会暴露 github 密码'
               # 和 docker-compose.yml service 名字一致
               run: |
-                  ssh yq@47.93.10.229"
+                  ssh yq@47.93.10.229;
                     cd /home/yq/lego-editor/lego-editer-server;
                     git remote add origin https://github.com/smokyfog/lego-editer-server.git;
                     git checkout master;
