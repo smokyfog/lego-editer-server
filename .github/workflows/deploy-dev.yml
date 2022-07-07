@@ -2,12 +2,12 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 # github actions 中文文档 https://docs.github.com/cn/actions/getting-started-with-github-actions
 
-name: deploy for dev
+name: deploy for master
 
 on:
     push:
         branches:
-            - 'dev' # 只针对 dev 分支
+            - 'master' # 只针对 dev 分支
         paths:
             - '.github/workflows/*'
             # - '__test__/**' # dev 不需要立即测试
@@ -17,7 +17,7 @@ on:
             - 'bin/*'
 
 jobs:
-    deploy-dev:
+    deploy-master:
         runs-on: ubuntu-latest
 
         steps:
@@ -25,20 +25,20 @@ jobs:
             - name: set ssh key # 临时设置 ssh key
               run: |
                   mkdir -p ~/.ssh/
-                  echo "${{secrets.WFP_ID_RSA}}" > ~/.ssh/id_rsa # secret 在这里配置 https://github.com/imooc-lego/biz-editor-server/settings/secrets
+                  echo "${{secrets.ALI}}" > ~/.ssh/id_rsa # secret 在这里配置 https://github.com/imooc-lego/biz-editor-server/settings/secrets
                   chmod 600 ~/.ssh/id_rsa
-                  ssh-keyscan "182.92.xxx.xxx" >> ~/.ssh/known_hosts
+                  ssh-keyscan "47.93.10.229" >> ~/.ssh/known_hosts
             - name: deploy # 部署
               run: |
-                  ssh work@182.92.xxx.xxx "
+                  ssh yq@47.93.10.229"
                     # 【注意】用 work 账号登录，手动创建 /home/work/imooc-lego 目录
-                    # 然后 git clone https://username:password@github.com/imooc-lego/biz-editor-server.git -b dev （私有仓库，使用 github 用户名和密码）
+                    # 然后 git clone https://username:password@github.com/imooc-lego/biz-editor-server.git -b master （私有仓库，使用 github 用户名和密码）
                     # 记得删除 origin ，否则会暴露 github 密码
 
-                    cd /home/work/imooc-lego/biz-editor-server;
-                    git remote add origin https://wangfupeng1988:${{secrets.WFP_PASSWORD}}@github.com/imooc-lego/biz-editor-server.git;
-                    git checkout dev;
-                    git pull origin dev; # 重新下载最新代码
+                    cd /home/yq/lego-editor/lego-editer-server;
+                    git remote add origin https://github.com/smokyfog/lego-editer-server.git;
+                    git checkout master;
+                    git pull origin master; # 重新下载最新代码
                     git remote remove origin; # 删除 origin ，否则会暴露 github 密码
                     # 启动 docker
                     docker-compose build editor-server; # 和 docker-compose.yml service 名字一致
