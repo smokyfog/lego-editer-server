@@ -3,8 +3,14 @@
  * @author 双越
  */
 
-require('./db-check')
-require('./users') // 先测试 users 接口，以便获取登录权限
-require('./works')
-require('./template')
-require('./channel')
+describe('test demo', () => {
+    test('1 + 1 = 2', () => {
+        expect(1 + 1).toBe(2)
+    })
+})
+
+// require('./db-check')
+// require('./users') // 先测试 users 接口，以便获取登录权限
+// require('./works')
+// require('./template')
+// require('./channel')

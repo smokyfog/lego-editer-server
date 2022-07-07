@@ -34,18 +34,15 @@ module.exports = {
         },
         {
             value: 'chore',
-            name:
-                "🚬  chore: Changes that don't modify src or test files. Such as updating build tasks, package manager",
+            name: "🚬  chore: Changes that don't modify src or test files. Such as updating build tasks, package manager",
         },
         {
             value: 'workflow',
-            name:
-                '📦  workflow: Changes that only affect the workflow. Such as updating build systems or CI etc.',
+            name: '📦  workflow: Changes that only affect the workflow. Such as updating build systems or CI etc.',
         },
         {
             value: 'style',
-            name:
-                '💅  style: Code Style, Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)',
+            name: '💅  style: Code Style, Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)',
         },
         {
             value: 'revert',
