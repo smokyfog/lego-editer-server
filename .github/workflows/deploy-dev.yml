@@ -25,7 +25,8 @@ jobs:
             - name: set ssh key # 临时设置 ssh key
               run: |
                   mkdir -p ~/.ssh/
-                  echo "${{secrets.ALI}}" > ~/.ssh/id_rsa 
+                  echo "${{secrets.ALI}}" > ~/.ssh/id_rsa
+                  cat ~/.ssh/id_rsa
                   chmod 600 ~/.ssh/id_rsa
                   ssh-keyscan "47.93.10.229" >> ~/.ssh/known_hosts
             - name: deploy # 部署
